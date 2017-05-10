@@ -47,7 +47,7 @@ class FileDownload
             while(!feof($fHandle))
             { 
                 echo fread($fHandle, round($this->_speed*1024,0)); 
-                ob_flush(); 
+                ob_flush();     #把数据从PHP的缓冲中释放出来
                 sleep(2); // 用于测试,减慢下载速度 
             } 
             ($fHandle!=null) && fclose($fHandle);
@@ -105,12 +105,7 @@ class FileDownload
 
 }
 
-
 $a=new FileDownload();
-$b=$a->download('./aa.txt','bb.txt',1);
-echo "<pre>";
-print_r($b);
-echo "</pre>";
-
+$b=$a->download('./aa.txt','bb.txt');
 
 ?>
