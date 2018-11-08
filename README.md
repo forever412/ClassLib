@@ -1,10 +1,10 @@
 ## 根据文件前两个字节来判断文件类型
-[CheckFileType.php ](https://github.com/suifeng412/php-lib/blob/master/file/CheckFileType.php)   
+[CheckFileType.php](https://github.com/suifeng412/php-lib/blob/master/file/CheckFileType.php)   
 优点：精准  
 缺点：每次都要fopen文件流，当文件不存在时会报错，因此需要特别地去校验
 
 ## PSR-0实现
-[Autoload.php ](https://github.com/suifeng412/php-lib/blob/master/psr-0/Autoload.php)   
+[Autoload.php](https://github.com/suifeng412/php-lib/blob/master/psr-0/Autoload.php)   
 PSR-0规范了指定自动加载，目前该规范已经弃用，采用了PSR-4替代。    
 PSR-0所要遵守的规范有：
 * 一个完全标准的命名空间(namespace)和类(class)的结构是这样的：\<Vendor Name>\(<Namespace>\)*<Class Name>
@@ -16,4 +16,4 @@ PSR-0所要遵守的规范有：
 * 组织名(vendor name)，空间名(namespace)，类名(class name)都由大小写字母组合而成。
 
 ## AES/CBC/PKCS5Padding的PHP实现
-
+[CryptAES.php](https://github.com/suifeng412/php-lib/blob/master/aes/CryptAES.php)  
