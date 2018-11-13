@@ -1,6 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
+ * Desc：通过openssl进行加密解码
  * User: 随风
  * Date: 2018/11/9
  * Time: 0:08
