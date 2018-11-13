@@ -16,4 +16,12 @@ PSR-0所要遵守的规范有：
 * 组织名(vendor name)，空间名(namespace)，类名(class name)都由大小写字母组合而成。
 
 ## AES/CBC/PKCS5Padding的PHP实现
+通过openssl模块进行加密解密。目前针对aes加密方式，大多使用openssl进行加密解密  
 [CryptAES.php](https://github.com/suifeng412/php-lib/blob/master/aes/CryptAES.php)  
+通过mcrypt木块进行加密解密。该木块在php7.2中已经被弃用。【谨慎选择】      
+[MagicCrypt.php](https://github.com/suifeng412/php-lib/blob/master/aes/MagicCrypt.php) 
+
+
+
+
+
