@@ -38,7 +38,7 @@ class CryptAES
      * @param mixed $options 还不是很清楚
      *
      */
-    public function __construct($key, $method = 'AES-128-CBC', $iv = '', $options = 0)
+    public function __construct($key, $method = 'AES-256-CBC', $iv = '', $options = 0)
     {
         // key是必须要设置的
         $this->secret_key = isset($key) ? $key : exit('key为必须项');
@@ -76,3 +76,20 @@ class CryptAES
         return openssl_decrypt($data, $this->method, $this->secret_key, $this->options, $this->iv);
     }
 }
+
+
+## eg.
+$iv = 0000000000000000;
+$encryptKey = '123456654321';
+$method = 'AES-256-CBC';
+$encryptString = '这是加密字符串';
+
+$cryptAesObj = new CryptAES($encryptKey, $method, $iv);
+
+$encryptString = '这是加密字符串';
+
+$result = $cryptAesObj->encrypt($encryptString);
+echo "加密结果：".$result."<br>";
+
+$result = $cryptAesObj->decrypt($result);
+echo "解密结果：".$result."<br/>";
