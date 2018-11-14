@@ -4,6 +4,7 @@
 +  [根据文件前两个字节来判断文件类型](#j1)
 +  [PSR-0实现](#j2)
 +  [AES/CBC/PKCS5Padding的PHP实现](#j3)  
++  [校验时间格式方法](#j4)  
 
 
 
@@ -12,6 +13,7 @@
 [CheckFileType.php](https://github.com/suifeng412/php-lib/blob/master/file/CheckFileType.php)   
 优点：精准  
 缺点：每次都要fopen文件流，当文件不存在时会报错，因此需要特别地去校验
+
 
 ### <span id='j2'>PSR-0实现</span>
 [Autoload.php](https://github.com/suifeng412/php-lib/blob/master/psr-0/Autoload.php)   
@@ -25,6 +27,7 @@ PSR-0所要遵守的规范有：
 * 完全标准的命名空间(namespace)和类(class)从文件系统加载源文件时将会加上.php后缀。
 * 组织名(vendor name)，空间名(namespace)，类名(class name)都由大小写字母组合而成。
 
+
 ### <span id='j3'>AES/CBC/PKCS5Padding的PHP实现</span>
 通过openssl模块进行加密解密。目前针对aes加密方式，大多使用openssl进行加密解密  
 [CryptAES.php](https://github.com/suifeng412/php-lib/blob/master/aes/CryptAES.php)  
@@ -32,6 +35,13 @@ PSR-0所要遵守的规范有：
 [MagicCrypt.php](https://github.com/suifeng412/php-lib/blob/master/aes/MagicCrypt.php) 
 
 
+### <span id='j4'>校验时间格式方法</span>
+```
+function checkFormatDate($date, $format = 'Y-m-d H:i:s'){
+    $timestamp = strtotime($date);
+    return $date == date($format, $timestamp);
+}
+```
 
 
 
