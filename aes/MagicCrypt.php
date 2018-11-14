@@ -8,9 +8,15 @@
  */
 
 class MagicCrypt {
-    private $iv = "0102030405060708";//密钥偏移量IV，可自定义
+    private $iv = "0000000000000000";               //密钥偏移量IV，可自定义
 
-    private $encryptKey = "自定义16位长度key";//AESkey，可自定义
+    private $encryptKey = "自定义16位长度key";        //AESkey，可自定义
+
+    public function __construct($iv = '', $encryptKey = '') {
+        $iv && $this->setIv($iv);
+        $encryptKey && $this->setEncryptKey($encryptKey);
+    }
+
 
     //加密
     public function encrypt($encryptStr) {
@@ -19,8 +25,6 @@ class MagicCrypt {
 
         //Open module
         $module = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_CBC, $localIV);
-
-        //print "module = $module <br/>" ;
 
         mcrypt_generic_init($module, $encryptKey, $localIV);
 
@@ -48,8 +52,6 @@ class MagicCrypt {
         //Open module
         $module = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_CBC, $localIV);
 
-        //print "module = $module <br/>" ;
-
         mcrypt_generic_init($module, $encryptKey, $localIV);
 
         $encryptedData = base64_decode($encryptStr);
@@ -57,13 +59,26 @@ class MagicCrypt {
 
         return $encryptedData;
     }
+
+    public function setIv($iv){
+        $this->iv = $iv;
+    }
+
+    public function setEncryptKey($encryptKey){
+        $this->encryptKey = $encryptKey;
+    }
 }
 
+
 ## eg.
+$iv = 0000000000000000;
+$encryptKey = '123456654321';
 $encryptString = '这是加密字符串';
-$encryptObj = new MagicCrypt();
+
+$encryptObj = new MagicCrypt($iv, $encryptKey);
 
 $result = $encryptObj->encrypt($encryptString);//加密结果
+echo "加密结果：".$result . "<br/>";
+
 $decryptString = $decryptString = $encryptObj->decrypt($result);//解密结果
-echo $result . "<br/>";
-echo $decryptString . "<br/>";
+echo "解密结果：".$decryptString . "<br/>";
